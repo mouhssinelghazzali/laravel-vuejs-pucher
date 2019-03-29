@@ -1,22 +1,51 @@
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
+import io from 'socket.io-client'
 
-window.Vue = require('vue');
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+let list = document.querySelector('#list')
+let addUser = (user) => {
+    let li = document.createElement('li')
+    li.innerText = user.name
+    li.id =  'user' + user.id
+    list.appendChild(li)
 
-const app = new Vue({
-    el: '#app'
-});
+}
+
+
+if(list){
+    let socket = io('http://localhost:3000')
+    socket.on('connect',() => {
+
+      socket.emit('identify',{
+
+        token: list.dataset.token
+      })
+        })
+
+
+        socket.on('users.new',({user}) => addUser(user) )
+
+        socket.on('users',({users}) =>{
+
+            for (let k in users) {
+                
+                addUser(users[k])
+                
+            }
+
+        })
+
+        socket.on('users.supp',({user})   =>{
+
+            list.removeChild(document.querySelector('#user' + user.id))
+
+
+        })
+
+
+       
+    
+}
+
+

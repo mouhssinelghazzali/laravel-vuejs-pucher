@@ -1,0 +1,21 @@
+{
+  "name": "websocket",
+  "version": "1.0.0",
+  "description": "projet ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git"
+  },
+  "author": "elghazzali",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^7.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "socket.io": "^2.2.0"
+  }
+}
