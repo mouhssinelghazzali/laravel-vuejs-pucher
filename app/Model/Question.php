@@ -12,7 +12,7 @@ class Question extends Model
     protected $guarded = [];
     public function getRouteKeyName()
     {
-        return 'id';
+        return 'slug';
     }
     public function user()
     {

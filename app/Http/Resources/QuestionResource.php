@@ -18,6 +18,7 @@ class QuestionResource extends Resource
             'title' => $this->title,
             'path'  => $this->path,
             'body'  => $this->body,
+            'slug'  => $this->slug,
             'created_at' =>  $this->created_at->diffForHumans(),
             'updated_at' =>  $this->updated_at->diffForHumans(),
             'user-name'  => $this->user->name,
