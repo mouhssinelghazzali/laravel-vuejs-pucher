@@ -7,6 +7,9 @@ Route::apiresource('/question/{question}/reply','ReplyController');
 
 Route::post('/like/{reply}','LikeController@LikeIt');
 Route::delete('/like/{reply}','LikeController@UnLikeIt');
+
+
+//Authentification JWT
 Route::group([
 
     'middleware' => 'api',
@@ -17,9 +20,14 @@ Route::group([
     Route::post('login', 'AuthController@login');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
+    Route::post('signup', 'AuthController@signup'); 
     Route::post('me', 'AuthController@me');
 
 });
+
+
+
+
 
 
 

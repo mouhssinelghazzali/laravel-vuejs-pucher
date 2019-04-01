@@ -8,6 +8,11 @@ use App\Model\Reply;
 
 class LikeController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('JWT');
+    }
     /**
      * Display a listing of the resource.
      *
