@@ -74383,7 +74383,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -74450,6 +74450,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -74460,12 +74461,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 email: null,
                 password: null,
                 password_confirmation: null
-            }
+            },
+            errors: {}
         };
     },
 
     methods: {
-        signup: function signup() {}
+        signup: function signup() {
+            var _this = this;
+
+            axios.post('api/auth/signup', this.form).then(function (res) {
+                return User.responseAfterLogin();
+            }).catch(function (error) {
+                return _this.errors = error.response.data.errors;
+            });
+        }
     }
 });
 
@@ -74504,6 +74514,12 @@ var render = function() {
             }
           }),
           _vm._v(" "),
+          _vm.errors.name
+            ? _c("span", { staticClass: "red--text" }, [
+                _vm._v(_vm._s(_vm.errors.name[0]))
+              ])
+            : _vm._e(),
+          _vm._v(" "),
           _c("v-text-field", {
             attrs: { label: "E-mail", type: "email", required: "" },
             model: {
@@ -74515,6 +74531,12 @@ var render = function() {
             }
           }),
           _vm._v(" "),
+          _vm.errors.email
+            ? _c("span", { staticClass: "red--text" }, [
+                _vm._v(_vm._s(_vm.errors.email[0]))
+              ])
+            : _vm._e(),
+          _vm._v(" "),
           _c("v-text-field", {
             attrs: { label: "Password", type: "password", required: "" },
             model: {
@@ -74525,6 +74547,12 @@ var render = function() {
               expression: "form.password"
             }
           }),
+          _vm._v(" "),
+          _vm.errors.password
+            ? _c("span", { staticClass: "red--text" }, [
+                _vm._v(_vm._s(_vm.errors.password[0]))
+              ])
+            : _vm._e(),
           _vm._v(" "),
           _c("v-text-field", {
             attrs: { label: "Password", type: "password", required: "" },
@@ -74538,7 +74566,7 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("v-btn", { attrs: { color: "blue", type: "submit" } }, [
-            _vm._v("\n     Sign Up\n   ")
+            _vm._v("\n      Sign Up\n    ")
           ]),
           _vm._v(" "),
           _c(
@@ -74546,7 +74574,7 @@ var render = function() {
             { attrs: { to: "/login" } },
             [
               _c("v-btn", { attrs: { color: "success", type: "submit" } }, [
-                _vm._v("\n     Login\n   ")
+                _vm._v("\n      Login\n    ")
               ])
             ],
             1
