@@ -9,13 +9,18 @@ require('./bootstrap');
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import VueRouter from 'vue-router'
+import User from './Helpers/User'
 
 
 
 
-window.Vue = require('vue');
 Vue.use(Vuetify)
 Vue.use(VueRouter)
+
+window.User = User
+window.Vue = require('vue');
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
