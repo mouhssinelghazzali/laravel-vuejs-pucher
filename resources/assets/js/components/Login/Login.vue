@@ -51,9 +51,15 @@ data(){
         }
     }
 },
+created(){
+  if (User.loggedIn()) {
+    this.$router.push({name:'forum'})
+  }
+},
 methods:{
     login(){
        User.Login(this.form)
+      // this.$router.push({name:'forum'})
         
         
     }

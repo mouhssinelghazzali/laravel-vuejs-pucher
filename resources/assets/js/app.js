@@ -19,7 +19,8 @@ Vue.use(VueRouter)
 
 window.User = User
 window.Vue = require('vue');
-
+window.EventBus= new Vue();
+console.log(User.loggedIn())
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

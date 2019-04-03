@@ -40,14 +40,7 @@
     >
       Sign Up
     </v-btn>
-    <router-link to="/login">
-    <v-btn
-      color="success"
-      type="submit"
-    >
-      Login
-    </v-btn>
-    </router-link>
+ 
 
 
   
@@ -71,10 +64,19 @@ data(){
     }
 
 },
+created(){
+  if (User.loggedIn()) {
+    this.$router.push({name:'forum'})
+  }
+},
 methods:{
     signup(){
         axios.post('api/auth/signup',this.form)
-        .then(res => User.responseAfterLogin())
+        .then(res => {
+            User.responseAfterLogin(res)
+            this.$router.push({name:'forum'})
+            
+            })
         .catch(error => this.errors =  error.response.data.errors)
     }
 
