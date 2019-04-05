@@ -7,9 +7,10 @@
    
       <router-link
       v-for="item in items"
-      :key="item.title"
+      v-if="item.show"
       :to="item.to"
-      v-if="item.show">
+      :key="item.title"
+      >
        <v-btn flat>{{item.title}}</v-btn></router-link>
       
     </div>

@@ -59,16 +59,16 @@ class Handler extends ExceptionHandler
         {
             return response(['error' => 'token can not be used '],
             Response::HTTP_BAD_REQUEST);
-        }  
-        /*
-        elseif($exception instanceof   TokenInvalidException)
+        }    
+        else if ($exception instanceof JWTException) {
+            return response(['error' => 'token is not provider'],
+            Response::HTTP_BAD_REQUEST);
+        }
+        else if($exception instanceof   TokenInvalidException)
         {
             return response(['error' => ' token invalide'],
             Response::HTTP_BAD_REQUEST);
         }
-        elseif ($exception instanceof JWTException) {
-            return response(['error' => 'token is not provider'],Response::HTTP_BAD_REQUEST);
-        }*/
         return parent::render($request, $exception);
     }
 }

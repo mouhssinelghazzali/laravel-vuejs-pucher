@@ -6,7 +6,7 @@ use App\Model\Question;
 use Illuminate\Http\Request;
 use App\Http\Resources\QuestionResource;
 use App\Http\Middleware\JWT;
-
+use Response;
 
 class QuestionController extends Controller
 {
@@ -48,8 +48,9 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        Question::create($request->all());
-        return response('crée');
+     //  existe function qui s'appel boot dans le model question qui permet d'ajouter automatiquement le slug 
+    $question =  auth()->user()->question()->create($request->all());
+    return response(new QuestionResource($question));
 
     }
 
@@ -61,6 +62,7 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
+
         return new QuestionResource($question);
     }
 

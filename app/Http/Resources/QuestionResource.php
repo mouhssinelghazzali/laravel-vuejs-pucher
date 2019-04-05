@@ -19,10 +19,11 @@ class QuestionResource extends Resource
             'path'  => $this->path,
             'body'  => $this->body,
             'slug'  => $this->slug,
+            'slug'  => $this->slug,
             'created_at' =>  $this->created_at->diffForHumans(),
             'updated_at' =>  $this->updated_at->diffForHumans(),
-            'user-name'  => $this->user->name,
-            'user-email'  => $this->user->email
+            'user'  => $this->user->name,
+            'id'  => $this->user_id,
  
         ];
     }
