@@ -16,6 +16,7 @@ class CategoryResource extends Resource
     {
         return [
             'name' => $this->name,
+            'slug' => $this->slug,
             'id' => $this->id
         ];
     }

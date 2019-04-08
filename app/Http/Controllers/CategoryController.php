@@ -47,7 +47,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->slug = str_slug($request->name);
         $category->save();
-        return response ('createad');
+        return response(new CategoryResource($category));
     }
 
     /**
@@ -89,7 +89,7 @@ class CategoryController extends Controller
        ]
     );
 
-       return response('update');
+       return response(new CategoryResource($category));
     }
 
     /**

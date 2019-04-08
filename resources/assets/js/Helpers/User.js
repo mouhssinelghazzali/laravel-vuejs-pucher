@@ -58,6 +58,12 @@ own(id){
 }
 
 
+admin(id){
+
+    return this.id()== 44
+}
+
+
 }
 export default User = new User();
  

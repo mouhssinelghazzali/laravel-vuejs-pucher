@@ -19,6 +19,8 @@ class QuestionResource extends Resource
             'path'  => $this->path,
             'body'  => $this->body,
             'slug'  => $this->slug,
+            'replies'  => ReplyResource::collection($this->replies),
+            'reply_count'  => $this->replies->count(),
             'slug'  => $this->slug,
             'created_at' =>  $this->created_at->diffForHumans(),
             'updated_at' =>  $this->updated_at->diffForHumans(),
