@@ -7,6 +7,8 @@ Route::apiresource('/question/{question}/reply','ReplyController');
 
 Route::post('/like/{reply}','LikeController@LikeIt');
 Route::delete('/like/{reply}','LikeController@UnLikeIt');
+Route::post('notifications', 'NotificationController@index');
+Route::post('markAsRead', 'NotificationController@markAsRead');
 
 
 //Authentification JWT
