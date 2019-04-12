@@ -103549,6 +103549,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -103570,7 +103571,7 @@ var render = function() {
     "v-footer",
     {
       staticClass: "footercss",
-      attrs: { height: "auto", color: "primary lighten-1" }
+      attrs: { "mb-4": "", height: "auto", color: "primary lighten-1" }
     },
     [
       _c(

@@ -1,5 +1,6 @@
 <template>
   <v-footer
+    mb-4
     height="auto"
     color="primary lighten-1"
     class="footercss"
