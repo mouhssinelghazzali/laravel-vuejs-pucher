@@ -13,24 +13,6 @@
 > PUSHER
 
 
-
-
-
-
-
----
-
-## Example (Optional)
-
-```javascript
-// code away!
-
-let generateProject = project => {
-  let code = [];
-  for (let js = 0; js < project.length; js++) {
-    code.push(js);
-  }
-};
 ```
 
 ---
@@ -44,12 +26,6 @@ let generateProject = project => {
 $ composer install 
 ```
 
-> now migrate
 
-```shell
-$ php artisan migrate
-```
-
-
-- **[MIT license](http://opensource.org/licenses/mit-license.php)**
+- **[MIT license]()**
 - Copyright 2019 © <a href="#" target="_blank">EL GHAZZALI Mouhssine</a>.
