@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Model\Like;
 use Illuminate\Http\Request;
 use App\Model\Reply;
+use App\Events\LikeEvent;
+
 
 class LikeController extends Controller
 {
@@ -12,24 +14,34 @@ class LikeController extends Controller
     public function __construct()
     {
         $this->middleware('JWT');
+        
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function LikeIt(Reply $reply)
+    public function likeIt(Reply $reply)
     {
-       $reply->like()->create([
-        'user_id' => auth()->id()
-
+      
  
-       ]);
+            $reply->like()->create([
+                'user_id' => auth()->id()
+            ]);
+
+            broadcast(new LikeEvent($reply->id, 1))->toOthers();
+     
+       
     }
-
-    public function UnLikeIt(Reply $reply)
+    public function unLikeIt(Reply $reply)
     {
-        $reply->like()->where('user_id',auth()->id())->first()->delete();
+        
+      
+        $reply->like()->where('user_id', auth()->id())->first()->delete();
+        
+        broadcast(new LikeEvent($reply->id, 0))->toOthers();
 
+
+        
     }
 }
