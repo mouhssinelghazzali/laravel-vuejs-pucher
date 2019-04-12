@@ -103464,6 +103464,10 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(187)
+}
 var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(95)
@@ -103472,7 +103476,7 @@ var __vue_template__ = __webpack_require__(96)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -103544,6 +103548,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -103563,7 +103568,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-footer",
-    { attrs: { height: "auto", color: "primary lighten-1" } },
+    {
+      staticClass: "footercss",
+      attrs: { height: "auto", color: "primary lighten-1" }
+    },
     [
       _c(
         "v-layout",
@@ -103643,7 +103651,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.backgroundbody {\r\n  background: -webkit-gradient(linear, left top, right top, from(#6aaaff), to(#488fef));\r\n  background: linear-gradient(to right, #6aaaff, #488fef);\n}\n@-webkit-keyframes rise {\n0% {padding-top: 100%;\n}\n60% {padding-top: 7%;\n}\n80% {padding-top: 7%; border-bottom: 0px solid #1976d2; opacity: 0.5; text-shadow: 2px 2px 5px #1976d2;\n}\n100% {padding-top: 7%; border-bottom: 0.35em solid #1976d2; opacity: 1; text-shadow: 0;\n}\n}\n@keyframes rise {\n0% {padding-top: 100%;\n}\n60% {padding-top: 7%;\n}\n80% {padding-top: 7%; border-bottom: 0px solid #1976d2; opacity: 0.5; text-shadow: 2px 2px 200px rgba(255, 255, 255, 1);\n}\n100% {padding-top: 7%; border-bottom: 0.35em solid  #1976d2;opacity: 1; text-shadow: 200px 200px 200px rgba(255, 255, 255, 0);\n}\n}\n.rise-text {\r\n  position: relative;\r\n  text-align: center;\r\n  margin: auto;\r\n  opacity: 0;\r\n  padding-top: 100%;\r\n  color: #fff;\r\n  border-bottom: 0;\r\n  text-shadow: 2px 2px 5px #fff;\r\n  font-family: Trebuchet MS, sans-serif;\r\n  font-size: 6em;\r\n  font-weight: normal;\r\n  -webkit-animation-name: rise;\r\n  -webkit-animation-duration: 5s;\r\n  -webkit-animation-delay: 1s;\r\n  -webkit-animation-iteration-count: 1;\r\n  -webkit-animation-timing-function: cubic-bezier(0, 0.25, 0.55, 1);\r\n  -webkit-animaiton-fill-mode: forwards;\r\n  animation-name: rise;\r\n  animation-duration: 5s;\r\n  animation-delay: 1s;\r\n  animation-iteration-count: 1;\r\n  animation-timing-function: cubic-bezier(0, 0.25, 0.55, 1);\r\n  -webkit-animation-fill-mode: forwards;\r\n          animation-fill-mode: forwards;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -103657,6 +103665,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vee_validate__ = __webpack_require__(186);
+//
+//
+//
 //
 //
 //
@@ -103752,7 +103763,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-container",
+    { staticClass: "backgroundbody" },
     [
+      _c("h1", { staticClass: "rise-text" }, [_vm._v("Login")]),
+      _vm._v(" "),
       _c(
         "v-form",
         {
@@ -118558,6 +118572,46 @@ VeeValidate$1.withValidation = withValidation;
 
 /* harmony default export */ __webpack_exports__["a"] = (VeeValidate$1);
 
+
+
+/***/ }),
+/* 187 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(188);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("22166dd0", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-462ca142\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FooterApp.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-462ca142\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FooterApp.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 188 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.footercss{\r\n\r\n   position: fixed;\r\n  left: 0;\r\n  bottom: 0;\r\n  width: 100%;\r\n  color: white;\r\n  text-align: center;\n}\r\n", ""]);
+
+// exports
 
 
 /***/ })

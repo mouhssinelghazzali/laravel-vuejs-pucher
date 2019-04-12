@@ -2,6 +2,7 @@
   <v-footer
     height="auto"
     color="primary lighten-1"
+    class="footercss"
   >
     <v-layout
       justify-center
@@ -44,3 +45,14 @@
     })
   }
 </script>
+<style>
+.footercss{
+
+   position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+</style>
