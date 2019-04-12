@@ -17091,9 +17091,9 @@ window._ = __webpack_require__(24);
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(26);
+    window.$ = window.jQuery = __webpack_require__(26);
 
-  __webpack_require__(27);
+    __webpack_require__(27);
 } catch (e) {}
 
 /**
@@ -17117,9 +17117,9 @@ window.axios.defaults.headers.common['Authorization'] = JwtToken;
 var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
-  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
 /**
@@ -17133,10 +17133,16 @@ if (token) {
 window.Pusher = __webpack_require__(48);
 
 window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo__["a" /* default */]({
-  broadcaster: 'pusher',
-  key: "451e193e7fae8182779b",
-  cluster: "ap2",
-  encrypted: true
+    broadcaster: 'pusher',
+    key: "451e193e7fae8182779b",
+    cluster: "ap2",
+    encrypted: true,
+    auth: {
+        headers: {
+            Authorization: JwtToken
+        }
+    }
+
 });
 
 /***/ }),
@@ -103179,7 +103185,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -103223,9 +103229,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   created: function created() {
+    var _this = this;
+
     if (User.loggedIn()) {
       this.getNotifications();
     }
+    Echo.private('App.User.' + User.id()).notification(function (notification) {
+      _this.unread.unshift(notification.reply);
+      _this.unreadCount++;
+    });
   },
 
   methods: {
@@ -103234,23 +103246,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       alert.play();
     },
     getNotifications: function getNotifications() {
-      var _this = this;
+      var _this2 = this;
 
       axios.post("/api/notifications").then(function (res) {
-        _this.read = res.data.read;
-        _this.unread = res.data.unread;
-        _this.unreadCount = res.data.unread.length;
+        _this2.read = res.data.read;
+        _this2.unread = res.data.unread;
+        _this2.unreadCount = res.data.unread.length;
       }).catch(function (error) {
         return Exception.handle(error);
       });
     },
     readIt: function readIt(notification) {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.post("/api/markAsRead", { id: notification.id }).then(function (res) {
-        _this2.unread.splice(notification, 1);
-        _this2.read.push(notification);
-        _this2.unreadCount--;
+        _this3.unread.splice(notification, 1);
+        _this3.read.push(notification);
+        _this3.unreadCount--;
       });
     }
   },
@@ -105440,7 +105452,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -105493,6 +105505,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                     _this.content.splice(index, 1);
                 });
+            });
+            Echo.private('App.User.' + User.id()).notification(function (notification) {
+                _this.content.unshift(notification.reply);
+            });
+            Echo.channel('deleteReplyChannel').listen('DeleteReplyEvent', function (e) {
+                for (var index = 0; index < _this.content.length; index++) {
+                    if (_this.content[index].id == e.id) {
+                        _this.content.splice(index, 1);
+                    }
+                }
             });
         }
     }
