@@ -9,7 +9,7 @@
             <span class="grey--text"> {{data.username}} said {{data.created_at}}</span>
         </div>
 <v-spacer></v-spacer>
-<v-btn color="teal" dark> {{data.reply_count}} Replies</v-btn>
+<v-btn color="teal" dark> {{replyCount}} Replies</v-btn>
     </v-card-title>
     <v-card-text v-html="body"></v-card-text>
     <v-card-actions v-if="own">
@@ -30,7 +30,8 @@ export default {
 props:['data'],
 data(){
 return{
-    own:User.own(this.data.id)
+    own:User.own(this.data.id),
+    replyCount:this.data.reply_count
 
 }
 },
@@ -39,6 +40,28 @@ computed:{
 
         return md.parse(this.data.body)
     }
+},
+created(){
+  EventBus.$on('newReply',()=>{
+    this.replyCount++
+
+  })
+
+    Echo.private('App.User.' + User.id())
+    .notification((notification) => {
+  this.replyCount++;
+    });
+    
+  EventBus.$on('deleteReply',()=>{
+    this.replyCount--
+
+  })
+     Echo.channel('deleteReplyChannel')
+    .listen('DeleteReplyEvent',(e) =>{
+    this.replyCount--
+
+    })
+  
 },
 methods:{
    supprimer(){

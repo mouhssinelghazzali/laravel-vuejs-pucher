@@ -99,7 +99,7 @@ export default {
   },
   computed: {
     disabled() {
-      return !this.form.name;
+   //   return !this.form.name;
     }
   }
 };

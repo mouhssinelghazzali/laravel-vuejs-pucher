@@ -10,15 +10,18 @@ import Vue from 'vue'
 import Vuetify from 'vuetify'
 import VueRouter from 'vue-router'
 import User from './Helpers/User'
+import Exception from './Helpers/Exception'
 import VueSimplemde from 'vue-simplemde'
 import 'simplemde/dist/simplemde.min.css'
 import md from 'marked'
 import VueSweetalert2 from 'vue-sweetalert2';
+
 Vue.use(VueSweetalert2);
 Vue.use(Vuetify)
 Vue.use(VueRouter)
 Vue.use(VueSimplemde)
 window.User = User
+window.Exception = Exception
 window.Vue = require('vue');
 window.EventBus= new Vue();
 window.md=md

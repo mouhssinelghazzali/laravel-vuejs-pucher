@@ -7,6 +7,9 @@
     <v-text-field
       v-model="form.email"
       label="E-mail"
+      v-validate="'required|email'"
+      :error-messages="errors.collect('email')"
+      data-vv-name="email"
       type="email"
       required
     ></v-text-field>
@@ -14,6 +17,9 @@
     <v-text-field
       v-model="form.password"
       label="Password"
+      v-validate="'required'"
+      :error-messages="errors.collect('password')"
+      data-vv-name="password"
       type="password"
       required
     ></v-text-field>
@@ -42,7 +48,14 @@
 
 
 <script>
+  import Vue from 'vue'
+  import VeeValidate from 'vee-validate'
+  Vue.use(VeeValidate)
 export default {
+   $_veeValidate: {
+      validator: 'new'
+    },
+  
 data(){
     return{
         form : {
@@ -51,15 +64,21 @@ data(){
         }
     }
 },
+ mounted () {
+      this.$validator.localize('en', this.dictionary)
+    },
 created(){
   if (User.loggedIn()) {
     this.$router.push({name:'forum'})
   }
 },
 methods:{
+  
     login(){
+       this.$validator.validateAll()
        User.Login(this.form)
       // this.$router.push({name:'forum'})
+      
         
         
     }

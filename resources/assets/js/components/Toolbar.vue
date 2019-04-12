@@ -1,9 +1,16 @@
 <template>
-  <v-toolbar>
+  <v-toolbar color="blue darken-2" dark>
 
-    <v-toolbar-title>VueJs</v-toolbar-title>
+    <v-toolbar-title>
+      <router-link class="white--text" to="/">
+
+      VueJs
+
+      </router-link>
+
+    </v-toolbar-title>
     <v-spacer></v-spacer>
-    <app-notification></app-notification>
+    <app-notification v-if="loggedIn"></app-notification>
     <div class="hidden-sm-and-down">
    
       <router-link
@@ -35,6 +42,11 @@ components:{AppNotification},
       ]
     }
   },
+  computed:{
+    loggedIn(){
+    return  User.loggedIn()
+    }
+},
   created(){
     EventBus.$on('logout',() =>{
 

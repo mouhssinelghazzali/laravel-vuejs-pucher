@@ -9,7 +9,9 @@ import Read from '../components/Forum/Read'
 import Create from '../components/Forum/Create'
 import Logout from '../components/Login/Logout'
 import CreateCategory from '../components/Category/CreateCategory'
+import Parallex from '../components/parallex'
 const routes = [
+    { path: '/', component: Parallex },
     { path: '/login', component: Login },
     { path: '/signup', component: Signup },
     { path: '/logout', component: Logout },

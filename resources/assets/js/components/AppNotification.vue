@@ -27,7 +27,7 @@ export default {
       read: {},
       unread: {},
       unreadCount: 0,
-      sound: "http://soundbible.com/mp3/glass_ping-Go445-1207030150.mp3"
+      sound: "https://foorzik-singles.com/srv1/13104/Mauvaise%20Affaire.mp3"
     };
   },
   created() {
@@ -36,6 +36,7 @@ export default {
     }
       Echo.private('App.User.' + User.id())
     .notification((notification) => {
+        this.playSound()
         this.unread.unshift(notification.reply)
         this.unreadCount++
     });
