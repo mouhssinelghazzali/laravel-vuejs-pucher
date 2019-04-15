@@ -17,14 +17,7 @@
 
 ---
 
-## Installation
-
-
-
-
-```shell
-$ composer install 
-```
+## I will put the documentation as much as possible
 
 
 - **[MIT license]()**
