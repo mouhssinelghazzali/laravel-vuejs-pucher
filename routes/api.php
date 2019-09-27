@@ -2,6 +2,10 @@
 
 
 Route::apiresource('/question','QuestionController');
+
+
+Route::get('question/category/{category}','CategoryController@category')->name('category');
+
 Route::apiresource('/category','CategoryController');
 Route::apiresource('/question/{question}/reply','ReplyController');
 

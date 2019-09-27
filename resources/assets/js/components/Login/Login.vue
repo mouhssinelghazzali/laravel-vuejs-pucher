@@ -1,8 +1,8 @@
 <template>
- <v-container class="backgroundbody">
+ <v-container  fluid class="backgroundbody">
 
           <h1 class="rise-text">Login</h1>
-
+     
   <v-form @submit.prevent="login"
     ref="form"
     lazy-validation
@@ -16,7 +16,8 @@
       type="email"
       required
     ></v-text-field>
-
+    <span class="text-danger" ></span>
+ <div v-show="submitted && !form.email" class="invalid-feedback">Email is required</div>
     <v-text-field
       v-model="form.password"
       label="Password"
@@ -26,26 +27,45 @@
       type="password"
       required
     ></v-text-field>
+ 
 
-
+<v-row>
+      <v-col cols="12" sm="6">
     <v-btn
       color="success"
       type="submit"
     >
       Login
     </v-btn>
-
+    
+  </v-col>
     <router-link to="/signup">
-
+  
+ <v-col cols="12" sm="6">
     <v-btn
       color="blue"
       type="submit"
     >
       Sign up
     </v-btn>
+      <circle-spin v-show="isLoading"></circle-spin>
+      </v-col>
     </router-link>
-  
+     </v-row>
+
+   
   </v-form>
+   <v-row>
+       <v-col cols="12" sm="6">
+    <v-btn
+      color="blue-grey"
+      class="ma-2 white--text"
+    >
+      Log In Google
+      <v-icon right dark>mdi-cloud-upload</v-icon>
+    </v-btn>
+     </v-col>
+     </v-row>
    </v-container>
 </template>
 
@@ -53,37 +73,69 @@
 <script>
   import Vue from 'vue'
   import VeeValidate from 'vee-validate'
+  import facebookLogin from 'facebook-login-vuejs';
+
   Vue.use(VeeValidate)
 export default {
+
+  components:{facebookLogin},
    $_veeValidate: {
       validator: 'new'
     },
   
 data(){
     return{
+        submitted: false,
         form : {
             email : null,
             password : null
-        }
+        },
+        elghazzali : 1,
+        tableAll:{},
+        isLoading: false
+        
     }
 },
  mounted () {
       this.$validator.localize('en', this.dictionary)
+      
     },
 created(){
   if (User.loggedIn()) {
     this.$router.push({name:'forum'})
   }
+ 
 },
 methods:{
-  
+  // getUser()
+  //     {
+  //       axios.get('/api/getcategory/ssss')
+  //   .then(res => console.log(res.data.data))
+  //   .catch(error => console.log(error.response.data))
+  //     },
+  //   get()
+  //   {
+  //     User.onSuccess()
+  //   },
+
     login(){
+ 
        this.$validator.validateAll()
-       User.Login(this.form)
-      // this.$router.push({name:'forum'})
       
-        
-        
+  
+
+       User.Login(this.form)
+      // this.elghazzali = 2 
+
+      //  if(this.form.email == 'hassizakaria@gmail.com' && this.form.password == 'hassihassihassi' )
+      //  {
+      //   alert(users);
+      //  }
+      //  else{
+      // alert('error username or password :(');
+
+      
+      // this.$router.push({name:'forum'})   
     }
 
 }

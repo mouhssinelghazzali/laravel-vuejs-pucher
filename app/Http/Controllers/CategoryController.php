@@ -6,12 +6,15 @@ use App\Model\Category;
 use Illuminate\Http\Request;
 use App\Http\Resources\CategoryResource;
 use App\Http\Requests\CategoryRequest;
+use App\Model\Question;
+use App\Model\CategoryQuestion;
+use App\Http\Resources\QuestionResource;
 
 class CategoryController extends Controller
 {
     public function __construct() {
         $this->middleware('JWT', ['except' => [
-            'index', 'show'
+            'index', 'show','category',
         ]]);
     }
 
@@ -104,4 +107,10 @@ class CategoryController extends Controller
         $category->delete();
         return response('supprimer');
     }
+
+    public function category(Category $category)
+{
+    $questions = $category->questions();
+    return response()->json($questions);
+}
 }

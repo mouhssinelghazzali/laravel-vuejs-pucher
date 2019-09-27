@@ -7,7 +7,10 @@
                   <v-list-tile v-for="category in categories" :key="category.id">
                       <v-list-tile-content>
                           <v-list-tile-title>
-                          {{category.name}}
+                          
+                          <router-link :to="category.path">
+                {{category.name}}
+                </router-link>
                           </v-list-tile-title>
 
                       </v-list-tile-content>

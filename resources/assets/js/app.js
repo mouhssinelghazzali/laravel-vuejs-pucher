@@ -14,8 +14,10 @@ import Exception from './Helpers/Exception'
 import VueSimplemde from 'vue-simplemde'
 import 'simplemde/dist/simplemde.min.css'
 import md from 'marked'
-import VueSweetalert2 from 'vue-sweetalert2';
+import VueSweetalert2 from 'vue-sweetalert2'
+import VueSpinners from 'vue-spinners'
 
+Vue.use(VueSpinners);
 Vue.use(VueSweetalert2);
 Vue.use(Vuetify)
 Vue.use(VueRouter)
