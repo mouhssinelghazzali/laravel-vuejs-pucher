@@ -20,6 +20,7 @@
         <div class="content">
             <div class="container">
                 <div class="row">
+
                     <div class="col-xs-12 col-sm-4"  v-for="(question,index) in filteredQuestion " :key="index"> 
                      
                         <div class="card" >
@@ -44,19 +45,15 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     
                 </div>
             </div>
         </div>
     </div>
 </section>
- <places
-    v-model="form.country.label"
-    placeholder="Where are we going ?"
-    @change="val => { form.country.data = val }"
-    :options="{ countries: ['US'] }">
-  </places>
+<input type="search" id="address-input" placeholder="Where are we going?" />
+
 </div>
   
       </div>
@@ -67,7 +64,7 @@
 
 
 <script>
-import Places from 'vue-places'
+
 export default {
 
     data(){
@@ -83,9 +80,6 @@ export default {
     }
 
 },
-components: {
-    Places
-  },
 computed: {
     filteredQuestion (){
       if(this.search){

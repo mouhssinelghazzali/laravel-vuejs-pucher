@@ -8,6 +8,7 @@
 require('./bootstrap');
 import Vue from 'vue'
 import Vuetify from 'vuetify'
+import CKEditor from '@ckeditor/ckeditor5-vue'
 import VueRouter from 'vue-router'
 import User from './Helpers/User'
 import Exception from './Helpers/Exception'
@@ -16,6 +17,11 @@ import 'simplemde/dist/simplemde.min.css'
 import md from 'marked'
 import VueSweetalert2 from 'vue-sweetalert2'
 import VueSpinners from 'vue-spinners'
+import SequentialEntrance from 'vue-sequential-entrance'
+import 'vue-sequential-entrance/vue-sequential-entrance.css'
+Vue.use(SequentialEntrance);
+Vue.use(CKEditor);
+
 
 Vue.use(VueSpinners);
 Vue.use(VueSweetalert2);

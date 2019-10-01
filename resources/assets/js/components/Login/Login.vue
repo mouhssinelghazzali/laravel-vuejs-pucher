@@ -66,6 +66,7 @@
     </v-btn>
      </v-col>
      </v-row>
+    <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
    </v-container>
 </template>
 
@@ -74,6 +75,8 @@
   import Vue from 'vue'
   import VeeValidate from 'vee-validate'
   import facebookLogin from 'facebook-login-vuejs';
+  import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 
   Vue.use(VeeValidate)
 export default {
@@ -92,7 +95,12 @@ data(){
         },
         elghazzali : 1,
         tableAll:{},
-        isLoading: false
+        isLoading: false,
+         editor: ClassicEditor,
+        editorData: '<p>Content of the editor.</p>',
+        editorConfig: {
+            // The configuration of the editor.
+        }
         
     }
 },
