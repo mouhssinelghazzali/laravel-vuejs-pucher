@@ -20,7 +20,22 @@
       :key="item.title"
       >
        <v-btn flat>{{item.title}}</v-btn></router-link>
-      
+        <v-menu offset-y>
+      <template v-slot:activator="{ on }">
+        <v-btn
+          color="primary"
+          dark
+          v-on="on"
+        >
+          Dropdown
+        </v-btn>
+      </template>
+      <v-list>
+        <v-list-item>
+          <v-list-item-title>{{ name }}</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
     </div>
   </v-toolbar>
 </template>
@@ -33,12 +48,14 @@ components:{AppNotification},
 
     return {
 
+     name: User.name(),
       items : [
         {title : 'Forum' , to:'/forum',show:true},
         {title : 'Login' , to:'/login',show:!User.loggedIn()},
         {title : 'Ask Question' , to:'/ask',show: User.loggedIn()},
         {title : 'Category' , to:'/category',show: User.admin()},
         {title : 'Logout' , to:'/logout',show: User.loggedIn()},
+        {title : this.name , to:'#',show: User.loggedIn()},
       ]
     }
   },

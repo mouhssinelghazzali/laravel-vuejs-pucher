@@ -9,6 +9,7 @@ import Forum from '../components/Forum/Forum'
 import Read from '../components/Forum/Read'
 import Create from '../components/Forum/Create'
 import Logout from '../components/Login/Logout'
+import User from '../components/User/index'
 import CreateCategory from '../components/Category/CreateCategory'
 import CategoryQuestion from '../components/Category/CategoryQuestion'
 import Parallex from '../components/parallex'
@@ -23,6 +24,9 @@ const routes = [
     { path: '/category', component: CreateCategory },
     { path: '/question/:slug', component: Read ,name:'read' },
     { path: '/question/category/:slug', component: CategoryQuestion ,name:'CategoryQuestion' },
+    { path: '/user', component: User ,name:'user' },
+
+    
   ]
 
   const router = new VueRouter({

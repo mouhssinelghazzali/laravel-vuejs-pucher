@@ -55,18 +55,8 @@
 
    
   </v-form>
-   <v-row>
-       <v-col cols="12" sm="6">
-    <v-btn
-      color="blue-grey"
-      class="ma-2 white--text"
-    >
-      Log In Google
-      <v-icon right dark>mdi-cloud-upload</v-icon>
-    </v-btn>
-     </v-col>
-     </v-row>
-    <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+ 
+    <!-- <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor> -->
    </v-container>
 </template>
 

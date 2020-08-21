@@ -2,7 +2,7 @@
 <div class="mt-4">
     <v-card>
         <v-card-title>
-            <div class="headline">{{data.user}}</div>
+            <div class="headline"><router-link to='/user'>{{data.user}}</router-link></div>
             <div class="ml-2">Said {{data.created_at}}</div>
             <v-spacer></v-spacer>
             <like :content="data"></like>
